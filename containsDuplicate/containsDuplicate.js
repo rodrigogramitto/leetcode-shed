@@ -22,16 +22,9 @@
 // E N/A
 
 const containsDuplicate = (arr) => {
-let integers = new Set();
+let integers = new Set(arr);
 
-for (var i = 0; i < arr.length; i++) {
-  if (integers.has(arr[i])) {
-    return true;
-  } else {
-    integers.add(arr[i])
-  }
-}
-return false;
+return arr.length !== integers.size
 }
 
 if (module === undefined) {
