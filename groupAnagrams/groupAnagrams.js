@@ -17,32 +17,35 @@
 // Input: strs = ["a"]
 // Output: [["a"]]
 
-// /**
-//  * @param {string[]} strs
-//  * @return {string[][]}
-//  */
-const isAnagram = (s, t) => {
-  return s.split('').sort().toString() === t.split('').sort().toString();
-}
 
+/*Strategy
+I: array of strings
+O: array of arrays of grouped strings by anagram
+C: N/A
+E: N/E
+*/
 var groupAnagrams = function(strs) {
-  let anagrams = [];
+  let grouped = {};
 
-for (var i = 0; i < strs.length; i++) {
-  let currentAnagrams = [strs[i]]
-  strs.forEach((str, index) => {
-    if (strs[i] !== str && isAnagram(strs[i], str)) {
-      currentAnagrams.push(str)
+  for (var i = 0; i < strs.length; i++) {
+    let currentSorted = strs[i].split('').sort().toString();
+    // if current string split, sorted and joined is not key at object
+    if (!grouped[currentSorted]) {
+      // define new key as sortedString and value as array containing string
+      grouped[currentSorted] = [strs[i]];
+  // else push current string into object at sortedString
+    } else {
+      grouped[currentSorted].push(strs[i]);
     }
-  })
-  anagrams.push(currentAnagrams);
-}
+  }
 
-  return anagrams;
+// return object values
+  return Object.values(grouped);
 };
 
 var actual1 = groupAnagrams(["eat","tea","tan","ate","nat","bat"]);
-console.log(actual1);
+console.log(actual1[2]) // [["bat"],["nat","tan"],["ate","eat","tea"]]
+
 
 
 if (module === undefined) {
