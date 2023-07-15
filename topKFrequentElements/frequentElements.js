@@ -16,23 +16,68 @@
 // C: O(n log n) logarithmic time
 // E: N/A
 
+// My solution
 const topKFrequent = function(nums, k) {
- // define object to hold ocurrences
- // define result array
+  if (nums.length === 1) {
+    return nums;
+  };
 
- // iterate through nums
-  // if object at nums is undefined
-    // object at nums equals one
-  // increase object at nums by one
+  let sorted = [];
+  nums.sort((a, b) => {
+    return a - b;
+  });
 
+  let temp = []
+  for (var i = 0; i < nums.length; i++) {
+      if (nums[i] !== nums[i + 1]) {
+        temp.push(nums[i])
+        sorted.push(temp);
+        temp = [];
+      } else {
+        temp.push(nums[i])
+      }
+  }
 
+  sorted.sort((a, b) => {
+    return b.length - a.length;
+  })
 
+  let result = []
+  for (var i = 0; i < k; i++) {
+    result.push(sorted[i][0])
+  }
 
-// return result array
+  return result;
 };
+
+// Faster leetcode solution
+
+// const topKFrequent = (nums, k) => {
+//   let result = [];
+//   let numbers = {};
+
+//     for(let i = 0; i < nums.length; i++) {
+//       if(numbers[nums[i]]) {
+//         numbers[nums[i]]++
+//       } else {
+//         numbers[nums[i]] = 1;
+//       }
+//     };
+
+//   let arrayOfEntries = Object.entries(numbers).sort((a, b) => {
+//     return a[1] - b[1]
+//   });
+
+//   while (result.length !== k) {
+//     let current = arrayOfEntries.pop()
+//     result.push(current[0])
+//   };
+//   return result;
+// }
 
 if (module === undefined) {
   var module = {}
 }
 
 module.exports = topKFrequent;
+
