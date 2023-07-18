@@ -16,9 +16,9 @@
 var longestConsecutive = (nums) => {
   if (!nums.length) return 0;
 
-  nums.sort((a, b) => a - b);/* Time O(N * log(N)) | Space O(1 || log(N)) */
+  nums.sort((a, b) => a - b);
 
-  return search(nums);       /* Time O(N) */
+  return search(nums);
 }
 
 const search = (nums) => {
