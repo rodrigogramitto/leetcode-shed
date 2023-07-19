@@ -1,5 +1,5 @@
 
-const threeSum = () => {
+const threeSum = (nums) => {
 
 };
 
