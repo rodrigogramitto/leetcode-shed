@@ -31,37 +31,36 @@
 
 // brute force method
 const threeSum = (nums) => {
-  // define hashmap to store triplets
-  let triplets = {};
+  // define triplets array
+  // sort nums to handle duplicates
 
-  // for each number, index
-  nums.forEach((number, index) => {
-    // define temp array
-    let temp = [];
-    // define left and right
-    let [left, right] = [0, nums.length];
-    // while left is smaller than right
-    while (left < right) {
-      // if left and right unequal index
-      if (left !== index && right !== index) {
-        // if nums at left plus nums at right plus nums at index equal 0
-        if ((nums[left] + nums[right] + nums[index]) === 0) {
-          // push all to temp
-          temp.push(nums[left], nums[right], nums[index])
-          console.log(temp);
-          // if triplets at temp is undefined
-          if (!triplets[`${temp}`]) {
-            return triplets[`${temp}`] = temp;
-            break;
-          }
-        }
-      }
-      left++;
-      right--;
-    }
-  })
-  // return object keys
-  return Object.values(triplets);
+  // iterate through nums skipping the last value
+
+  // if i is greater than 0 and nums at index equals nums at index minus one
+    // continue
+
+  // define left and right as index plus one and nums length minus one
+
+  // while left is smaller than right
+    // let sum equal nums at i, left and right
+
+    // if sum equals 0
+      // push nums at i, left and right to triplets
+
+      // while left is smaller than right and nums at left = nums at left +1
+       // increase left
+
+      // while left is smaller than right and nums at right = nums right - 1
+        // decrease right
+
+      // increase left, decrease right
+
+      // else if sum is smaller than zero
+        // increase left
+      // else
+       // decrease right
+
+// return triplets
 };
 
 module.exports = threeSum;
