@@ -32,38 +32,49 @@
 // brute force method
 const threeSum = (nums) => {
   // define triplets array
+  let triplets = [];
   // sort nums to handle duplicates
+  nums.sort((a, b) => a - b);
 
   // iterate through nums skipping the last value
+  for (var i = 0; i < nums.length - 2; i++) {
 
   // if i is greater than 0 and nums at index equals nums at index minus one
-    // continue
+  if (i > 0 && nums[i] === nums[i - 1]) {
+    continue;
+  }
 
   // define left and right as index plus one and nums length minus one
+  let [left, right] = [i + 1, nums.length - 1];
 
   // while left is smaller than right
+  while (left < right) {
     // let sum equal nums at i, left and right
-
-    // if sum equals 0
-      // push nums at i, left and right to triplets
+    let sum = nums[i] + nums[left] + nums[right];
+    if (sum === 0) {
+      triplets.push([nums[i], nums[left], nums[right]]);
 
       // while left is smaller than right and nums at left = nums at left +1
-       // increase left
+      while (left <= right && nums[left] === nums[left + 1]) {
+        left++;
+      }
 
       // while left is smaller than right and nums at right = nums right - 1
-        // decrease right
-
-      // increase left, decrease right
-
-      // else if sum is smaller than zero
-        // increase left
-      // else
-       // decrease right
-
-// return triplets
+      while (left >= right && nums[right] === nums[right - 1]) {
+        right--;
+      }
+      left++;
+      right--;
+    } else if (sum < 0) {
+        left++;
+      } else {
+        right--;
+      }
+  }
+}
+return triplets;
 };
 
 module.exports = threeSum;
 
 var actual1 = threeSum([-1,0,1,2,-1,-4]) // Expected: [[-1,-1,2],[-1,0,1]]
-console.log(actual1[0], actual1[1], actual1[2]);
