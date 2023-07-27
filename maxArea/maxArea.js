@@ -24,8 +24,44 @@
 // 2 <= n <= 105
 // 0 <= height[i] <= 104
 
-var maxArea = function(height) {
+// brute force solution
+// var maxArea = function(nums) {
+// if (nums.length === 2) {
+//   return nums[0] * nums[1];
+// }
+// let max = 0;
 
+// // iterate through height
+// for (var i = 0; i < nums.length; i++) { // outer
+//   // inner
+//   for (var j = i; j < nums.length; j++) {
+//     // define heigth, and length
+//     let [length, heigth] = [j - i, Math.min(nums[i], nums[j])];
+//     let currentArea = length * heigth;
+//     max = Math.max(max, currentArea)
+//   }
+// }
+
+// return max;
+// };
+
+var maxArea = function(nums) {
+let [left, right, max] = [0, nums.length - 1, 0];
+
+while (left < right) {
+  const [leftHeight, rightHeight] = [nums[left], nums[right]];
+  const area = (Math.min(leftHeight, rightHeight) * (right - left));
+  max = Math.max(max, area);
+
+  if (leftHeight <= rightHeight) {
+    left++;
+  }
+  if (leftHeight > rightHeight) {
+    right--;
+  }
+}
+return max;
 };
 
 module.exports = maxArea;
+
