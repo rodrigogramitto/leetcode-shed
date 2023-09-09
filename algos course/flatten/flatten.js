@@ -2,21 +2,15 @@
 // an array of arrays and returns a new array with all values flattened.
 
 function flatten(col){
-   // define a results array
    let results = [];
 
-   // iterate through collection
    for (let i = 0; i < col.length; i++) {
-      // if current element is not an array
       if (!Array.isArray(col[i])) {
         results.push(col[i])
       } else {
         results = results.concat(flatten(col[i]))
       }
    }
-
-
-  // return results
   return results;
 }
 
