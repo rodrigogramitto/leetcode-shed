@@ -1,8 +1,11 @@
 // You are given an array prices where prices[i] is the price of a given stock on the ith day.
 
-// You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+// You want to maximize your profit by choosing a single day to buy one stock
+// and choosing a different day in the future to sell that stock.
 
 // Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+
 
 // Example 1:
 
@@ -16,21 +19,21 @@
 // Output: 0
 // Explanation: In this case, no transactions are done and the max profit = 0.
 
+var maxProfit = function(prices) {
+  let [l, r, max] = [0, 1, 0];
 
-// Constraints:
+  while (r < prices.length) {
+    let total = prices[r] - prices[l];
+    max = Math.max(max, total);
 
-// 1 <= prices.length <= 105
-// 0 <= prices[i] <= 104
-#include <iostream>
-#include <vector>
-class Solution {
-public:
-    int maxProfit(vector<int>& prices) {
-        int maxProfit = 0, min = prices[0];
-        for (int i = 1; i < prices.size(); i++) {
-            maxProfit = std::max(maxProfit, prices[i] - min);
-            min = std::min(min, prices[i]);
-        };
-        return maxProfit;
+    if (prices[l] > prices[r]) {
+      l = r;
     }
+    r++;
+  }
+  return max;
 };
+
+let actual1 = maxProfit([7,1,5,3,6,4]) === 5;
+
+console.log(actual1);
