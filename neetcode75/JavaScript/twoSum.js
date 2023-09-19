@@ -21,18 +21,24 @@
 // Output: [0,1]
 
 var twoSum = function(nums, target) {
-  let sum = [-1, -1];
+  let map = {};
+  for (let i = 0; i < nums.length; i++) {
+    map[i]
+  }
+  nums.sort((a, b) => a - b);
+  let [l, r] = [0, nums.length - 1];
 
-  for (let i = 0; i < nums.length; i ++) {
-    for (let j = i + 1; j < nums.length; j++) {
-      if (nums[i] + nums[j] === target) {
-        sum[0] = i;
-        sum[1] = j;
-        return sum;
-      }
+  while (l < r) {
+    let sum = nums[l] + nums[r];
+    if (sum === target) return [nums[l], nums[r]];
+    if (sum < target) {
+      l++;
+    } else {
+      r--;
     }
-  };
-  return sum;
+  }
+
+  return null;
 };
 
 let actual1 = twoSum([2,7,11,15], 9) // [0,1]
