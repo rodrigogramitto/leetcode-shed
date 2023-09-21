@@ -14,7 +14,6 @@ function swap(arr, idx1, idx2) {
 function pivotHelper(arr, start = 0, end = arr.length - 1) {
   let pivot = arr[start];
   let pIdx = start;
-
   for (let i = start + 1; i <= end; i++){
     if (arr[i] < pivot) {
       pIdx++;
@@ -25,5 +24,15 @@ function pivotHelper(arr, start = 0, end = arr.length - 1) {
   return pIdx;
 }
 
-let actual = [4,3,2,1,66,22,9];
+function quickSort(arr, left = 0, right = arr.length - 1) {
+  if (left < right) {
+    let pivotIndex = pivotHelper(arr, left, right);
+    quickSort(arr, left, pivotIndex - 1);
+    quickSort(arr, pivotIndex + 1, right)
+  }
+  return arr;
+}
 
+let actual = quickSort([4,3,2,1,66,22,9]);
+
+console.log(actual);
