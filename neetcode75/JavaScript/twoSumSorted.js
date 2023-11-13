@@ -32,24 +32,10 @@
 // E: No repeated numbers, have to return indexes in 1-index format
 
 var twoSum = function(numbers, target) {
-  // keep track of seen values -> object with number as key, and value as true.
-  //(might have to have arr of indeces as val);
-  // let seen = {};
-  // initiate left and right pointers at 0 (start), and num.length - 1 (end);
   let [l, r, curr] = [0, numbers.length - 1, 0];
 
-  // while left is smaller than right
   while (l < r) {
-    // if I havent seen these elements before
     let [lVal, rVal] = [numbers[l], numbers[r]];
-    // let seen = (seen[lVal] && seen[rVal]);
-    // if (!seen) {
-    //   seen[lVal] = true;
-    //   seen[rVal] = true;
-    // } else {
-    //   continue;
-    // }
-    // if current equals target
     curr = lVal + rVal;
     if (curr === target) {
       return [l + 1, r + 1];
