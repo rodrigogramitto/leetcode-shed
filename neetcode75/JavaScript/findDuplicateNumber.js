@@ -28,8 +28,3 @@ var findDuplicate = function(nums) {
     counter[num] = true;
   }
 };
-
-let actual1 = findDuplicate([1,3,4,2,2]) // 2;
-let actual2 = findDuplicate([3,1,3,4,2]) // 3
-console.log(actual1);
-console.log(actual2);
