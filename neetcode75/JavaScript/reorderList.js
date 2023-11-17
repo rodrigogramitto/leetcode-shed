@@ -79,15 +79,18 @@ function getList(head) {
  // My solution doesnt work for all test cases. Apparently must try some sort of merge sort solution
 
 
-var reorderList = function(head) {
-  if (!head || head.next) return head;
+ var reorderList = function(head) {
+  if (!head || !head.next) return head;
 
-  let [slow, fast] = [head, head];
-  while (fast && fast.next){
+  // Find the middle of the linked list
+  let slow = head;
+  let fast = head;
+  while (fast && fast.next) {
     slow = slow.next;
     fast = fast.next.next;
   }
-  // reverse the second half of the linked list
+
+  // Reverse the second half of the linked list
   let prev = null;
   let curr = slow;
   while (curr) {
@@ -106,8 +109,10 @@ var reorderList = function(head) {
 
     first.next = second;
     second.next = next1;
-    first= next1;
+
+    first = next1;
     second = next2;
   }
+
   return head;
-}
+};
