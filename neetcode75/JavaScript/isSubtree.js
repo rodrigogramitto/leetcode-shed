@@ -65,7 +65,7 @@ const isSame = (root1, root2) => {
   const areSame = root1.val === root2.val;
     if (!areSame) return false;
 
-  let left = isSame(root1.left, root2.right);
+  let left = isSame(root1.left, root2.left);
   let right = isSame(root1.right, root2.right);
 
   return left && right;
