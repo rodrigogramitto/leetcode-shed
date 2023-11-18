@@ -82,6 +82,17 @@
         }
         return values;
     }
+
+    getPrevious(index) {
+        if (index < 0 || index > this.size) return null;
+        let count = 0;
+        let node = this.head;
+        while (node && count < this.size - 2) {
+            node = node.next;
+            count++;
+        }
+        return node;
+    }
   }
 
   class Node {
@@ -90,3 +101,14 @@
         this.next = null;
     }
   }
+
+  let myList = new LinkedList;
+
+  myList.insertHead(1);
+  myList.insertTail(2);
+  myList.insertTail(3);
+  myList.insertTail(4);
+  myList.insertTail(5);
+
+  console.log(myList.getValues())
+  console.log(myList.getPrevious(4))
