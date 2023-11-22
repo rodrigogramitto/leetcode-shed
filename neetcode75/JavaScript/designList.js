@@ -84,15 +84,16 @@
     }
 
     getPrevious(index) {
-        if (index < 0 || index > this.size) return null;
-        let count = 0;
-        let node = this.head;
-        while (node && count < this.size - 2) {
-            node = node.next;
-            count++;
+        if (index < 0 || index >= this.size || index === 0) {
+            return null; // Invalid index or no previous node for the head
         }
-        return node;
-    }
+
+        let prev = this.head;
+        for (let i = 0; i < index - 1; i++) {
+            prev = prev.next;
+        }
+
+        return prev;
   }
 
   class Node {
