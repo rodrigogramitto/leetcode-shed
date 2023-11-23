@@ -23,21 +23,20 @@
 var twoSum = function(nums, target) {
   let map = {};
   for (let i = 0; i < nums.length; i++) {
-    map[i]
+    map[nums[i]] = i;
   }
   nums.sort((a, b) => a - b);
   let [l, r] = [0, nums.length - 1];
 
   while (l < r) {
     let sum = nums[l] + nums[r];
-    if (sum === target) return [nums[l], nums[r]];
+    if (sum === target) return [map[nums[l]], map[nums[r]]];
     if (sum < target) {
       l++;
     } else {
       r--;
     }
   }
-
   return null;
 };
 

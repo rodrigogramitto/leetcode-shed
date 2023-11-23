@@ -24,23 +24,20 @@
 const isValid = (s) => {
   let stack = [];
 
-  for (char of s) {
-        if (char === '(' || char === '[' || char === '{') {
-          stack.push(char);
-        } else {
-          let open = stack.pop();
-          if (
-            (char === ')' && open !== '(') ||
-            (char === ']' && open !== '[') ||
-            (char === '}' && open !== '{')
-          ) {
-            return false; // Mismatched brackets, return false immediately.
-          }
-        }
+  for (p of s) {
+    if (p === '(' || p === '{' || p === '[') stack.push(p);
+
+    if (p === ')' && stack[stack.length - 1] === '(') {
+      stack.pop();
+    } else if (p === ']' && stack[stack.length - 1] === '[') {
+      stack.pop();
+    } else if (p === '}' && stack[stack.length - 1] === '{') {
+      stack.pop();
+    }
   }
+
+
   return stack.length === 0;
 };
 
-let actual = isValid('([{}])');
-
-console.log(actual);
+module.exports = isValid;
