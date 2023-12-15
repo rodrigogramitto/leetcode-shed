@@ -17,39 +17,43 @@
 // Explanation: Note that the values of nums are not necessairly unique.
 
 
+// we will need a swap helper method
 const swap = (arr, idx1, idx2) => {
   [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
 }
 
+// we will need a pivot helper
 const pivot = (arr, start = 0, end = arr.length - 1) => {
-  let pivot = arr[start];
-   let pIndex = start;
+   let pivot = arr[start];
+   let pIdx = start;
 
    for (let i = start + 1; i <= end; i++) {
-     if (arr[i] < pivot) {
-      pIndex++;
-       swap(arr, i, pIndex);
-     }
+    if (arr[i] < pivot) {
+      pIdx++;
+      swap(arr, i, pIdx);
+    }
    }
-   swap(arr, start, pIndex);
-  return pIndex;
+   swap(arr, start, pIdx);
+
+   return pIdx;
 }
 
-const sortArray = (nums, left = 0, right = nums.length - 1) => {
-  // while left is smaller than right
-  if (left < right) {
-    let pIndex = pivot(nums, left, right);
-    sortArray(nums, left, pIndex - 1);
-    sortArray(nums, pIndex + 1, right);
+// we will need a sort function to call methods
+const sortArray = (arr, start = 0, end = arr.length - 1) => {
+  if (start < end) {
+    let pIdx = pivot(arr, start, end);
+    sortArray(arr, pIdx, end - 1);
+    sortArray(arr, start + 1, pIdx);
   }
-  return nums;
+  return arr;
 }
-
-
 
 
 
 let nums = [5,2,3,1];
+let nums2 = [8,6,7,5,3,0,9];
 let sorted = sortArray(nums);
+let sorted1 = sortArray(nums2);
 
-console.log(sorted) // [1,2,3,5];
+console.log(sorted) // expect [1,2,3,5];
+console.log(sorted1);
