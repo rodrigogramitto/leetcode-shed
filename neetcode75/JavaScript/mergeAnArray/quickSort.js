@@ -17,33 +17,34 @@
 // Explanation: Note that the values of nums are not necessairly unique.
 
 
-// we will need a swap helper method
+// swap helper method
 const swap = (arr, idx1, idx2) => {
   [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
-}
+};
 
-// we will need a pivot helper
+// pivot helper -> will move elements before pivot if smaller
 const pivot = (arr, start = 0, end = arr.length - 1) => {
-   let pivot = arr[start];
-   let pIdx = start;
+  let pivot = arr[start];
+  let pIdx = start;
 
-   for (let i = start + 1; i <= end; i++) {
+  for (let i = start; i <= end; i++) {
     if (arr[i] < pivot) {
       pIdx++;
       swap(arr, i, pIdx);
     }
-   }
-   swap(arr, start, pIdx);
+  }
+  swap(arr, start, pIdx);
 
-   return pIdx;
+  return pIdx
 }
 
-// we will need a sort function to call methods
-const sortArray = (arr, start = 0, end = arr.length - 1) => {
-  if (start < end) {
-    let pIdx = pivot(arr, start, end);
-    sortArray(arr, pIdx, end - 1);
-    sortArray(arr, start + 1, pIdx);
+
+// sort function -> will call pivot helper on nums
+const sortArray = (arr, l = 0, r = arr.length - 1) => {
+  if (l < r) {
+    let pIdx = pivot(arr, l, r);
+    pivot(arr, l + 1, pIdx);
+    pivot(arr, pIdx, r - 1);
   }
   return arr;
 }
