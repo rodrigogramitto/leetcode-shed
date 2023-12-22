@@ -4,15 +4,17 @@
 var kthSmallest = function(root, k) {
   let values = [];
   if (!root) return null;
-  const dfs = (node) => {
-    values.push(node.val);
-    if (node.left) dfs(node.left);
-    if (node.right) dfs(node.right);
-  }
-  dfs(root);
-  values.sort((a, b ) => a - b);
+
+  dfs_inorder(root, values);
+  // values.sort((a, b ) => a - b);
   return values[k - 1];
 };
+
+const dfs_inorder = (node, results) => {
+  if (node.left) dfs_inorder(node.left, results);
+  results.push(node.val);
+  if (node.right) dfs_inorder(node.right, results);
+}
 
 const TreeNode = function(val) {
   this.val = val;
