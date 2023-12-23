@@ -26,6 +26,7 @@ const minWindow = (s, t) => {
   const isEdgeCase = !s.length || !t.length
   if (isEdgeCase) return '';
 
+
   const countT = frequencyMap(t);
   const {start, end} = getWindowPointers(s, t, countT);
 
@@ -90,7 +91,7 @@ const getSubString = (s, start, end) => {
 }
 
 
-
 let actual1 = minWindow('ADOBECODEBANC', 'ABC')
+
 
 console.log(actual1);
